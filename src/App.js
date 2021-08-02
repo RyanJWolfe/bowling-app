@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Container, CssBaseline } from "@material-ui/core";
 
-function App() {
+import Header from "./components/nav/Header";
+import HomePage from "./components/HomePage";
+import GameCreate from "./components/game/GameCreate";
+import GameView from "./components/game/GameView";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <div>
+          <CssBaseline />
+          <Header />
+          <Container maxWidth="lg">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/create-game" element={<GameCreate />} />
+              <Route path="/game" element={<GameView />} />
+            </Routes>
+          </Container>
+        </div>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
