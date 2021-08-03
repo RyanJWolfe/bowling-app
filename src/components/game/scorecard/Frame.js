@@ -8,6 +8,14 @@ const Frame = (props) => {
   const [secondScore, setSecondScore] = useState("");
 
   useEffect(() => {
+    // if the first shot gets changed, reset the second shot
+    if (secondScore !== "") {
+      setSecondScore("");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstScore]);
+
+  useEffect(() => {
     let first = firstScore;
     let second = secondScore;
     if (firstScore === "") {
@@ -30,9 +38,8 @@ const Frame = (props) => {
       return total ? total : null;
     }
 
-    // do not render a total if previous frame has not been scored
-    // or a score for the current frame hasn't been made yet
-    if (!props.frameScores[props.number - 2].frameScore || !total) {
+    // do not render a total if a score for the current frame hasn't been made yet
+    if (!total) {
       return null;
     }
 
@@ -47,7 +54,7 @@ const Frame = (props) => {
     <Grid container spacing={0}>
       <Grid item align="center" xs={12}>
         <Box
-          p={2}
+          p={1}
           border={1}
           borderBottom={0}
           borderRight={props.number === 10 ? 1 : 0}
@@ -56,12 +63,12 @@ const Frame = (props) => {
         </Box>
       </Grid>
       <Grid item align="center" xs={6}>
-        <Box p={1} border={1} borderRight={0}>
+        <Box p={0} border={1} borderRight={0}>
           <ScoreForm setScore={setFirstScore} score={firstScore} />
         </Box>
       </Grid>
       <Grid item align="center" xs={6}>
-        <Box p={1} border={1} borderRight={props.number === 10 ? 1 : 0}>
+        <Box p={0} border={1} borderRight={props.number === 10 ? 1 : 0}>
           <ScoreForm
             setScore={setSecondScore}
             score={secondScore}

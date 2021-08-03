@@ -14,8 +14,6 @@ const GameView = (props) => {
     }
   });
 
-  console.log(numPlayers);
-
   const renderScoreCards = () => {
     let scoreCards = [];
 

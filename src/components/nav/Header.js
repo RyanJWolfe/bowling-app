@@ -28,14 +28,14 @@ const Header = () => {
               to="/"
               startIcon={<HomeRoundedIcon />}
             >
-              Home
+              Bowling Score Calculator
             </Button>
           </Typography>
           <Button
             component={Link}
             to="/create-game"
-            color="secondary"
-            variant="contained"
+            color="inherit"
+            variant="outlined"
           >
             Create New Game
           </Button>

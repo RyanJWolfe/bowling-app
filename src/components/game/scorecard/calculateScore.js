@@ -7,34 +7,31 @@ export const calculateFrameTotals = (scoresArray) => {
   const thirdScore = scoresArray[tenthFrameIndex].thirdScore;
   let frameScore = 0;
 
-  if (firstScore === "STRIKE") {
-    frameScore = 10;
-    if (secondScore === "STRIKE") {
+  if (firstScore) {
+    if (firstScore === "STRIKE") {
       frameScore += 10;
-      if (thirdScore === "STRIKE") {
-        frameScore += 10;
-      } else {
-        frameScore += thirdScore;
-      }
     } else {
-      if (thirdScore === "SPARE") {
-        frameScore += 10;
-      } else {
-        frameScore += secondScore + thirdScore;
-      }
+      frameScore += firstScore;
     }
-  } else {
     if (secondScore) {
-      // first score was NOT a strike, check for spare
-      if (secondScore === "SPARE") {
-        frameScore = 10 + thirdScore;
+      if (secondScore === "STRIKE") {
+        frameScore += 10;
+      } else if (secondScore === "SPARE") {
+        frameScore -= firstScore;
+        frameScore += 10;
       } else {
-        // opened the tenth frame
-        frameScore = firstScore + secondScore;
+        frameScore += secondScore;
       }
-    } else {
-      // only the first shot has been scored
-      frameScore = firstScore;
+      if (thirdScore) {
+        if (thirdScore === "STRIKE") {
+          frameScore += 10;
+        } else if (thirdScore === "SPARE") {
+          frameScore -= secondScore;
+          frameScore += 10;
+        } else {
+          frameScore += thirdScore;
+        }
+      }
     }
   }
   scoresArray[tenthFrameIndex] = {

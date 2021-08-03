@@ -72,6 +72,7 @@ const ScoreCard = (props) => {
 
   const renderFrames = () => {
     let frames = [];
+    // add frames 1-9
     for (var i = 1; i <= 9; ++i) {
       frames.push(
         <Grid key={i} item xs={1}>
@@ -86,7 +87,7 @@ const ScoreCard = (props) => {
 
     // add frame 10
     frames.push(
-      <Grid key={10} item xs={1}>
+      <Grid key={10} item xs={2}>
         <FrameTen frameScores={frameScores} sendScore={handleFrameTenScore} />
       </Grid>
     );

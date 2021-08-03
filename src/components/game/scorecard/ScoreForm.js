@@ -58,8 +58,13 @@ const ScoreForm = (props) => {
   };
 
   const renderOptions = () => {
-    // if this prop exists, that means this is the second score in a frame
-    if (props.firstScore !== undefined) {
+    // if true, that means this is the second score in a frame
+    if (
+      (props.firstScore !== undefined && !props.tenthFrame) ||
+      (props.tenthFrame &&
+        props.firstScore !== "STRIKE" &&
+        props.firstScore !== "SPARE")
+    ) {
       // filter the options to show based on the first score
       return scores.map((option) => {
         if (option.value === "STRIKE") {
@@ -92,19 +97,25 @@ const ScoreForm = (props) => {
     }
   };
 
+  const checkToDisable = () => {
+    if (props.tenthFrame) {
+      return props.firstScore !== "" ? false : true;
+    }
+
+    return props.firstScore === "STRIKE" ||
+      (props.firstScore !== undefined &&
+        !props.firstScore &&
+        props.firstScore !== 0)
+      ? true
+      : false;
+  };
   // disable the select if there is not a firstScore when the prop exists
   // or if the firstScore was a strike
   return (
     <Select
-      disabled={
-        props.firstScore === "STRIKE" ||
-        (props.firstScore !== undefined &&
-          !props.firstScore &&
-          props.firstScore !== 0)
-          ? true
-          : false
-      }
-      IconComponent={undefined}
+      style={{ width: "100%" }}
+      disabled={checkToDisable()}
+      IconComponent={checkToDisable() ? "none" : undefined}
       disableUnderline
       value={props.score}
       onChange={handleChange}
