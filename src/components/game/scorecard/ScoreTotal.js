@@ -2,7 +2,7 @@ import React from "react";
 
 import { Grid, Box } from "@material-ui/core";
 
-const Total = (props) => {
+const ScoreTotal = (props) => {
   return (
     <Grid container spacing={0}>
       <Grid item align="center" xs={12}>
@@ -19,4 +19,4 @@ const Total = (props) => {
   );
 };
 
-export default Total;
+export default ScoreTotal;

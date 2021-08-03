@@ -6,55 +6,39 @@ import ScoreForm from "./ScoreForm";
 const Frame = (props) => {
   const [firstScore, setFirstScore] = useState("");
   const [secondScore, setSecondScore] = useState("");
-  const [total, setTotal] = useState("");
 
   useEffect(() => {
-    if (firstScore) {
-      if (firstScore === "STRIKE") {
-        // props.number corresponds to the current frame number, so
-        // props.frameScores[props.number] is actually the next frame
-        // TODO: get next frames scores
-        setTotal(10);
-      } else {
-        if (secondScore) {
-          if (secondScore === "SPARE") {
-            setTotal(10);
-          } else {
-            setTotal(firstScore + secondScore);
-          }
-        } else {
-          setTotal(firstScore);
-        }
-      }
+    let first = firstScore;
+    let second = secondScore;
+    if (firstScore === "") {
+      first = 0;
     }
-  }, [firstScore, secondScore, props.frameScores]);
-
-  useEffect(() => {
-    // if this frame has a score, send it to the parent ScoreCard component via
-    // prop function
-    if (total) {
-      props.sendScore(props.number, total);
+    if (secondScore === "") {
+      second = 0;
     }
-  }, [total]);
+    props.sendScore(props.number, first, second);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstScore, secondScore]);
 
   const renderTotal = () => {
     // calculate the total score up to the current frame
     let sum = 0;
+    const total = props.frameScores[props.number - 1].frameScore;
 
     // first frame just has own total
     if (props.number === 1) {
-      return total;
+      return total ? total : null;
     }
 
     // do not render a total if previous frame has not been scored
     // or a score for the current frame hasn't been made yet
-    if (!props.frameScores[props.number - 2] || !total) {
+    if (!props.frameScores[props.number - 2].frameScore || !total) {
       return null;
     }
 
     // total up all frame scores
     for (var i = 0; i < props.number; ++i) {
-      sum += props.frameScores[i];
+      sum += props.frameScores[i].frameScore;
     }
     return sum;
   };

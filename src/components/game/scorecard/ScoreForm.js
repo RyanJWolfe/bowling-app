@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles, MenuItem, Select } from "@material-ui/core";
 
-const scores = [
+export const scores = [
   {
     value: 0,
     label: "-",
@@ -92,6 +92,8 @@ const ScoreForm = (props) => {
     }
   };
 
+  // disable the select if there is not a firstScore when the prop exists
+  // or if the firstScore was a strike
   return (
     <Select
       disabled={
