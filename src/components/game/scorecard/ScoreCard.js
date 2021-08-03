@@ -87,7 +87,7 @@ const ScoreCard = (props) => {
 
     // add frame 10
     frames.push(
-      <Grid key={10} item xs={2}>
+      <Grid style={{ maxWidth: 150 }} key={10} item xs={2}>
         <FrameTen frameScores={frameScores} sendScore={handleFrameTenScore} />
       </Grid>
     );
@@ -101,7 +101,7 @@ const ScoreCard = (props) => {
         className={classes.nameField}
         value={name}
       />
-      <Grid container alignItems="center" justifyContent="center">
+      <Grid container justifyContent="center">
         {renderFrames()}
         <Grid item xs={1}>
           <ScoreTotal value={total} />

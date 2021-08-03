@@ -1,8 +1,10 @@
 import React from "react";
-
 import { Grid, Box } from "@material-ui/core";
 
+import { useStyles } from "./frame/styles";
+
 const ScoreTotal = (props) => {
+  const classes = useStyles();
   return (
     <Grid
       container
@@ -12,7 +14,13 @@ const ScoreTotal = (props) => {
       spacing={0}
     >
       <Grid item align="center" xs={12}>
-        <Box style={{ height: 30 }} p={1} border={1} borderLeft={0}>
+        <Box
+          className={classes.frameNumber}
+          style={{ height: 30 }}
+          p={1}
+          border={1}
+          borderLeft={0}
+        >
           Total
         </Box>
       </Grid>

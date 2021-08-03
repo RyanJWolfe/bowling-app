@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Grid, Box } from "@material-ui/core";
 
 import FrameScoreSelect from "./FrameScoreSelect";
+import { useStyles } from "./styles";
 
 const Frame = (props) => {
+  const classes = useStyles();
   const [firstScore, setFirstScore] = useState("");
   const [secondScore, setSecondScore] = useState("");
 
@@ -52,6 +54,7 @@ const Frame = (props) => {
           border={1}
           borderBottom={0}
           borderRight={props.number === 10 ? 1 : 0}
+          className={classes.frameNumber}
         >
           {props.number}
         </Box>
