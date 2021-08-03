@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Box } from "@material-ui/core";
 
-import ScoreForm from "./ScoreForm";
+import FrameScoreSelect from "./FrameScoreSelect";
 
 const Frame = (props) => {
   const [firstScore, setFirstScore] = useState("");
@@ -16,14 +16,9 @@ const Frame = (props) => {
   }, [firstScore]);
 
   useEffect(() => {
-    let first = firstScore;
-    let second = secondScore;
-    if (firstScore === "") {
-      first = 0;
-    }
-    if (secondScore === "") {
-      second = 0;
-    }
+    const first = firstScore === "" ? 0 : firstScore;
+    const second = secondScore === "" ? 0 : secondScore;
+
     props.sendScore(props.number, first, second);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firstScore, secondScore]);
@@ -54,7 +49,6 @@ const Frame = (props) => {
     <Grid container spacing={0}>
       <Grid item align="center" xs={12}>
         <Box
-          p={1}
           border={1}
           borderBottom={0}
           borderRight={props.number === 10 ? 1 : 0}
@@ -63,13 +57,13 @@ const Frame = (props) => {
         </Box>
       </Grid>
       <Grid item align="center" xs={6}>
-        <Box p={0} border={1} borderRight={0}>
-          <ScoreForm setScore={setFirstScore} score={firstScore} />
+        <Box border={1} borderRight={0}>
+          <FrameScoreSelect setScore={setFirstScore} score={firstScore} />
         </Box>
       </Grid>
       <Grid item align="center" xs={6}>
-        <Box p={0} border={1} borderRight={props.number === 10 ? 1 : 0}>
-          <ScoreForm
+        <Box border={1} borderRight={props.number === 10 ? 1 : 0}>
+          <FrameScoreSelect
             setScore={setSecondScore}
             score={secondScore}
             firstScore={firstScore}

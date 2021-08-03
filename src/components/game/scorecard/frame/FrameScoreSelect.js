@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, MenuItem, Select } from "@material-ui/core";
+import { MenuItem, Select } from "@material-ui/core";
 
 export const scores = [
   {
@@ -52,7 +52,7 @@ export const scores = [
   },
 ];
 
-const ScoreForm = (props) => {
+const FrameScoreSelect = (props) => {
   const handleChange = (e) => {
     props.setScore(e.target.value);
   };
@@ -125,4 +125,4 @@ const ScoreForm = (props) => {
   );
 };
 
-export default ScoreForm;
+export default FrameScoreSelect;

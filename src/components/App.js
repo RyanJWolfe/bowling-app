@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Container, CssBaseline } from "@material-ui/core";
 
-import Header from "./components/nav/Header";
-import HomePage from "./components/HomePage";
-import GameCreate from "./components/game/GameCreate";
-import GameView from "./components/game/GameView";
+import Header from "./nav/Header";
+import HomePage from "./HomePage";
+import GameCreate from "./game/GameCreate";
+import GameView from "./game/GameView";
 
 const App = () => {
   return (

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, TextField } from "@material-ui/core";
 
-import Frame from "./Frame";
-import FrameTen from "./FrameTen";
+import Frame from "./frame/Frame";
+import FrameTen from "./frame/FrameTen";
 import ScoreTotal from "./ScoreTotal";
 import { calculateFrameTotals } from "./calculateScore";
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Box } from "@material-ui/core";
 
-import ScoreForm from "./ScoreForm";
+import FrameScoreSelect from "./FrameScoreSelect";
 
 const FrameTen = (props) => {
   const [firstScore, setFirstScore] = useState("");
@@ -60,9 +60,9 @@ const FrameTen = (props) => {
     // if the first shot was a strike, do no pass a firstScore prop,
     // this will treat the second shot like the "first" shot in a new frame
     return firstScore === "STRIKE" ? (
-      <ScoreForm setScore={setSecondScore} score={secondScore} />
+      <FrameScoreSelect setScore={setSecondScore} score={secondScore} />
     ) : (
-      <ScoreForm
+      <FrameScoreSelect
         setScore={setSecondScore}
         score={secondScore}
         firstScore={firstScore}
@@ -73,36 +73,36 @@ const FrameTen = (props) => {
   const renderThirdShotForm = () => {
     // if the second score was a strike or spare, render the third frame
     return firstScore === "STRIKE" || secondScore === "SPARE" ? (
-      <ScoreForm
+      <FrameScoreSelect
         setScore={setThirdScore}
         score={thirdScore}
         firstScore={secondScore}
         tenthFrame={true}
       />
     ) : (
-      <ScoreForm firstScore="" score="" />
+      <FrameScoreSelect firstScore="" score="" />
     );
   };
 
   return (
     <Grid container spacing={0}>
       <Grid item align="center" xs={12}>
-        <Box p={1} border={1} borderBottom={0} borderRight={1}>
+        <Box border={1} borderBottom={0} borderRight={1}>
           {number}
         </Box>
       </Grid>
       <Grid item align="center" xs={4}>
-        <Box p={0} border={1} borderRight={0}>
-          <ScoreForm setScore={setFirstScore} score={firstScore} />
+        <Box border={1} borderRight={0}>
+          <FrameScoreSelect setScore={setFirstScore} score={firstScore} />
         </Box>
       </Grid>
       <Grid item align="center" xs={4}>
-        <Box p={0} border={1} borderRight={0}>
+        <Box border={1} borderRight={0}>
           {renderSecondShotForm()}
         </Box>
       </Grid>
       <Grid item align="center" xs={4}>
-        <Box p={0} border={1} borderRight={1}>
+        <Box border={1} borderRight={1}>
           {renderThirdShotForm()}
         </Box>
       </Grid>
